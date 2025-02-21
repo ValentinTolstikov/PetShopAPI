@@ -1,0 +1,11 @@
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Domain/bin/Debug/net8.0/PetShop.Domain.deps.json
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Domain/bin/Debug/net8.0/PetShop.Domain.dll
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Domain/bin/Debug/net8.0/PetShop.Domain.pdb
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Domain/obj/Debug/net8.0/PetShop.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Domain/obj/Debug/net8.0/PetShop.Domain.AssemblyInfoInputs.cache
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Domain/obj/Debug/net8.0/PetShop.Domain.AssemblyInfo.cs
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Domain/obj/Debug/net8.0/PetShop.Domain.csproj.CoreCompileInputs.cache
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Domain/obj/Debug/net8.0/PetShop.Domain.dll
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Domain/obj/Debug/net8.0/refint/PetShop.Domain.dll
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Domain/obj/Debug/net8.0/PetShop.Domain.pdb
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Domain/obj/Debug/net8.0/ref/PetShop.Domain.dll

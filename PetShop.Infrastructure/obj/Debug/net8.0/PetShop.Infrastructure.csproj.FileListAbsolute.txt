@@ -1,0 +1,17 @@
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Infrastructure/bin/Debug/net8.0/PetShop.Infrastructure.deps.json
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Infrastructure/bin/Debug/net8.0/PetShop.Infrastructure.dll
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Infrastructure/bin/Debug/net8.0/PetShop.Infrastructure.pdb
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Infrastructure/bin/Debug/net8.0/PetShop.Domain.dll
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Infrastructure/bin/Debug/net8.0/PetShop.Domain.pdb
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Infrastructure/obj/Debug/net8.0/PetShop.Infrastructure.csproj.AssemblyReference.cache
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Infrastructure/obj/Debug/net8.0/PetShop.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Infrastructure/obj/Debug/net8.0/PetShop.Infrastructure.AssemblyInfoInputs.cache
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Infrastructure/obj/Debug/net8.0/PetShop.Infrastructure.AssemblyInfo.cs
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Infrastructure/obj/Debug/net8.0/PetShop.Infrastructure.csproj.CoreCompileInputs.cache
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Infrastructure/obj/Debug/net8.0/PetShop.Infrastructure.csproj.CopyComplete
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Infrastructure/obj/Debug/net8.0/PetShop.Infrastructure.dll
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Infrastructure/obj/Debug/net8.0/refint/PetShop.Infrastructure.dll
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Infrastructure/obj/Debug/net8.0/PetShop.Infrastructure.pdb
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Infrastructure/obj/Debug/net8.0/ref/PetShop.Infrastructure.dll
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Infrastructure/bin/Debug/net8.0/PetShop.Infrastructure.runtimeconfig.json
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Infrastructure/obj/Debug/net8.0/PetShop.Infrastructure.genruntimeconfig.cache

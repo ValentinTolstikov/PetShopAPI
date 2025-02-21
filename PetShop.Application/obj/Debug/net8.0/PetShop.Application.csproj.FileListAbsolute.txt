@@ -1,0 +1,17 @@
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/bin/Debug/net8.0/PetShop.Application.deps.json
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/bin/Debug/net8.0/PetShop.Application.dll
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/bin/Debug/net8.0/PetShop.Application.pdb
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/bin/Debug/net8.0/PetShop.Domain.dll
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/bin/Debug/net8.0/PetShop.Domain.pdb
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/obj/Debug/net8.0/PetShop.Application.csproj.AssemblyReference.cache
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/obj/Debug/net8.0/PetShop.Application.GeneratedMSBuildEditorConfig.editorconfig
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/obj/Debug/net8.0/PetShop.Application.AssemblyInfoInputs.cache
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/obj/Debug/net8.0/PetShop.Application.AssemblyInfo.cs
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/obj/Debug/net8.0/PetShop.Application.csproj.CoreCompileInputs.cache
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/obj/Debug/net8.0/PetShop.Application.csproj.CopyComplete
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/obj/Debug/net8.0/PetShop.Application.dll
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/obj/Debug/net8.0/refint/PetShop.Application.dll
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/obj/Debug/net8.0/PetShop.Application.pdb
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/obj/Debug/net8.0/ref/PetShop.Application.dll
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.dll
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.xml

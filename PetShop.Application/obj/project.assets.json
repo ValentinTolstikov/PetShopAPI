@@ -1,0 +1,89 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0": {
+      "PetShop.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/PetShop.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PetShop.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PetShop.Domain/1.0.0": {
+      "type": "project",
+      "path": "../PetShop.Domain/PetShop.Domain.csproj",
+      "msbuildProject": "../PetShop.Domain/PetShop.Domain.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0": [
+      "PetShop.Domain >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "/home/test/.nuget/packages/": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/PetShop.Application.csproj",
+      "projectName": "PetShop.Application",
+      "projectPath": "/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/PetShop.Application.csproj",
+      "packagesPath": "/home/test/.nuget/packages/",
+      "outputPath": "/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/obj/",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "/home/test/.nuget/NuGet/NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "projectReferences": {
+            "/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Domain/PetShop.Domain.csproj": {
+              "projectPath": "/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Domain/PetShop.Domain.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net8.0": {
+        "targetAlias": "net8.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.112/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
