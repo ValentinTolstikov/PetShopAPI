@@ -51,3 +51,8 @@
 /mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 /mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
 /mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop/obj/Debug/net8.0/PetShop.sourcelink.json
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop/bin/Debug/net8.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop/bin/Debug/net8.0/Microsoft.Extensions.Logging.Abstractions.dll
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop/bin/Debug/net8.0/Microsoft.Extensions.Options.dll
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop/bin/Debug/net8.0/Newtonsoft.Json.dll

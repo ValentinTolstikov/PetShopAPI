@@ -1,5 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using PetShop.Auth;
@@ -21,7 +22,7 @@ public class AuthController : ControllerBase
         _userService = userService;
     }
 
-    [HttpGet("Login")]
+    [HttpPost("Login")]
     public async Task<ActionResult<string>> Login([FromBody] LoginRequestDTO loginRequest)
     {
         try
@@ -36,7 +37,7 @@ public class AuthController : ControllerBase
             expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(30)), // время действия 30 минуты
             signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             
-            return new JwtSecurityTokenHandler().WriteToken(jwt);
+            return new JsonResult(new JwtSecurityTokenHandler().WriteToken(jwt));
         }
         catch (Exception ex)
         {

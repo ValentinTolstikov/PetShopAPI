@@ -1,10 +1,7 @@
+using System.Net;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using PetShop.Infrastructure;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
 using PetShop.Application;
 using PetShop.Auth;
 using PetShop.Domain.Interfaces;
@@ -18,11 +15,18 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+        
+        builder.WebHost.UseKestrel(options =>
+        {
+            options.Listen(IPAddress.Parse("127.0.0.1"), 25000);
+        });
+        
         var services = builder.Services;
-
+        
         var dbconfig = builder.Configuration.GetSection("DbConfiguration");
+        
         services.Configure<DbConfiguration>(dbconfig);
-            
+        services.AddCors();
         services.AddAuthorization();
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
@@ -39,9 +43,10 @@ public class Program
                 };
             });
         
-        services.AddControllers();
-        
-        services.AddCors();
+        services.AddControllers().AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.WriteIndented = true;
+        });
 
         var conStr = dbconfig.GetSection("DevConnectionString").Value;
         
@@ -63,17 +68,14 @@ public class Program
 
         var app = builder.Build();
 
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
+        app.UseCors(policyBuilder => policyBuilder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().Build());
+        
             app.UseSwagger();
             app.UseSwaggerUI();
-        }
 
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
-
 
         app.MapControllers();
 

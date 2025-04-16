@@ -15,3 +15,4 @@
 /mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/obj/Debug/net8.0/ref/PetShop.Application.dll
 /mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.dll
 /mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.xml
+/mnt/8cfc9414-8b8f-4a61-b0c5-9778c0e5358c/DotnetProjects/PetShop/PetShop.Application/obj/Debug/net8.0/PetShop.Application.sourcelink.json

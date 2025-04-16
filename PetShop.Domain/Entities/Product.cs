@@ -9,6 +9,4 @@ public class Product
     public float Price { get; set; }
     public int CountInStock { get; set; }
     public int IdCategory { get; set; }
-    public Category Category { get; set; }
-    public Manufacturer Manufacturer { get; set; }
 }
