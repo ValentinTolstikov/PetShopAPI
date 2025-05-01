@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using PetShop.Domain.DTOs;
+﻿using PetShop.Domain.DTOs;
 using PetShop.Domain.Entities;
 using PetShop.Domain.Exceptions;
 using PetShop.Domain.Interfaces;
