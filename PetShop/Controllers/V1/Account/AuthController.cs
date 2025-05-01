@@ -29,7 +29,11 @@ public class AuthController : ControllerBase
         { 
             var user = await _userService.Authorize(loginRequest.Username, loginRequest.Password);
         
-            var claims = new List<Claim> {new Claim(ClaimTypes.Name, user.Username) };
+            var claims = new List<Claim>
+            {
+                new (ClaimTypes.Name, user.Username),
+                new (ClaimTypes.Role, "User")
+            };
             var jwt = new JwtSecurityToken(
             issuer: AuthOptions.ISSUER,
             audience: AuthOptions.AUDIENCE,
@@ -45,7 +49,7 @@ public class AuthController : ControllerBase
         }
     }
     
-    [HttpGet("Registration")]
+    [HttpPost("Registration")]
     public async Task<ActionResult<string>> Registration([FromBody] RegistrationRequestDTO request)
     {
         try

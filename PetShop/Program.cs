@@ -16,10 +16,10 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         
-        builder.WebHost.UseKestrel(options =>
+        /*builder.WebHost.UseKestrel(options =>
         {
             options.Listen(IPAddress.Parse("127.0.0.1"), 25000);
-        });
+        });*/
         
         var services = builder.Services;
         
