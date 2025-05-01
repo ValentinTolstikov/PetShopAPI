@@ -50,6 +50,9 @@ public class Program
 
         var conStr = dbconfig.GetSection("DevConnectionString").Value;
         
+        if(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") != "Development")
+            conStr = dbconfig.GetSection("ProdConnectionString").Value;
+        
         services.AddDbContext<PetShopContext>(opt =>
         {
             opt.UseMySql(
