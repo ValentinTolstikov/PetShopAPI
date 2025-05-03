@@ -21,6 +21,20 @@ public class PetShopContext : DbContext
     {
     }
     
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<ProductPhoto>()
+            .HasOne(e => e.Product)
+            .WithMany(e => e.ProductPhotos)
+            .HasForeignKey(e => e.IdProduct)
+            .HasPrincipalKey(e => e.Id);
+        
+        modelBuilder.Entity<ProductPhoto>()
+            .HasOne(e => e.Photo)
+            .WithOne(e => e.ProductPhoto)
+            .HasForeignKey<ProductPhoto>(e => e.IdProductPhoto);
+    }
+    
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
     }
