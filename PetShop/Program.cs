@@ -49,9 +49,14 @@ public class Program
         });
 
         var conStr = dbconfig.GetSection("DevConnectionString").Value;
-        
-        if(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") != "Development")
+
+        if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") != "Development")
+        {
+            var logger = new LoggerFactory().CreateLogger("Development");
+            logger.LogInformation("ASPNETCORE_ENVIRONMENT is not development");
             conStr = dbconfig.GetSection("ProdConnectionString").Value;
+        }
+            
         
         services.AddDbContext<PetShopContext>(opt =>
         {
