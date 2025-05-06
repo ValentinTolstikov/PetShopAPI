@@ -23,28 +23,38 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet(Name = "Products")]
-    public async Task<ActionResult<IEnumerable<Product>>> GetPage(int page = 1, int pageSize = 10, string? tag = null)
+    public async Task<ActionResult<IEnumerable<Product>>> GetPage(int page = 1, int pageSize = 10, string? tag = null, string? category = null)
     {
         _logger.LogInformation("GetProducts called.");
-        if (tag is null)
+
+        var source = _context.Product.AsQueryable();
+        
+        if (tag is not null)
         {
-            return Ok(_context.Product.Skip(pageSize * (page-1)).Take(pageSize));   
+            var tagId = (await _context.Tag.FirstOrDefaultAsync(t=>t.Name==tag))?.Id;
+
+            if (tagId is null)
+                return NotFound($"No tag found with name {tag}");
+
+            var productTags = _context.ProductTag
+                .Where(pt => pt.IdTag == tagId)
+                .Select(pt => pt.Id)
+                .AsQueryable();
+
+            source = source.Where(p => productTags.Contains(p.Id));
+        }
+
+        if (category is not null)
+        {
+            var reqCategory = await _context.Category.FirstOrDefaultAsync(c=>c.Name==category);
+            
+            if(reqCategory is null)
+                return NotFound("Category not found");
+            
+            source = source.Where(p => p.IdCategory == reqCategory.Id);
         }
         
-        var tagId = _context.Tag.FirstOrDefault(t=>t.Name==tag)?.Id;
-
-        if (tagId is null)
-            return NotFound($"No tag found with name {tag}");
-
-        var productTags = _context.ProductTag
-            .Where(pt => pt.IdTag == tagId)
-            .Select(pt => pt.Id)
-            .AsQueryable();
-
-        var result = _context.Product.Where(p => productTags.Contains(p.Id))
-            .Skip(pageSize * (page - 1)).Take(pageSize);
-        
-        return Ok(result);
+        return Ok(source.Skip(pageSize * (page - 1)).Take(pageSize));
     }
 
     [HttpGet]
