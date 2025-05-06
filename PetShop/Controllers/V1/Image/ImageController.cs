@@ -22,14 +22,12 @@ public class ImageController
     [HttpGet]
     public async Task<IEnumerable<PhotoDTO>> Product(int productId)
     {
-        var test = _context.ProductPhoto.Where(p=>p.IdProduct == productId).Include(p=>p.Photo).Select(p=>p.Photo).ToArray();
-        
-        if(test.Length == 0)
-            return Array.Empty<PhotoDTO>();
+        var photoIds = _context.ProductPhoto.Where(p => p.IdProduct == productId).Select(p=>p.IdPhoto).ToArray();
+        var photos = _context.Photo.Where(p => photoIds.Contains(p.Id));
         
         var dtos = new List<PhotoDTO>();
 
-        foreach (var photo in test)
+        foreach (var photo in photos)
         {
             var base64 = Encoding.UTF8.GetString(photo.Data);
             var dto = new PhotoDTO()
