@@ -26,7 +26,15 @@ public class Program
         var dbconfig = builder.Configuration.GetSection("DbConfiguration");
         
         services.Configure<DbConfiguration>(dbconfig);
-        services.AddCors();
+        services.AddCors(options =>
+        {
+            options.AddPolicy("CorsPolicy",
+                builder => builder
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .SetIsOriginAllowed((host) => true)
+                    .AllowAnyHeader());
+        });
         services.AddAuthorization();
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
@@ -76,10 +84,10 @@ public class Program
 
         var app = builder.Build();
 
-        app.UseCors(policyBuilder => policyBuilder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().Build());
+        app.UseCors("CorsPolicy");
         
-            app.UseSwagger();
-            app.UseSwaggerUI();
+        app.UseSwagger();
+        app.UseSwaggerUI();
 
         app.UseHttpsRedirection();
 
