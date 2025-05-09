@@ -79,6 +79,8 @@ public class Program
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
+        services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUserService, UserService>();
 
