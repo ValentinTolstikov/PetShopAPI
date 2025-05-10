@@ -26,8 +26,12 @@ public class AuthController : ControllerBase
     public async Task<ActionResult<string>> Login([FromBody] LoginRequestDTO loginRequest)
     {
         try
-        { 
+        {
+            _logger.LogInformation("Login Requested");
+            
             var user = await _userService.Authorize(loginRequest.Username, loginRequest.Password);
+            
+            _logger.LogTrace("Login success for user {user}", user.Username);
         
             var claims = new List<Claim>
             {
@@ -45,6 +49,7 @@ public class AuthController : ControllerBase
         }
         catch (Exception ex)
         {
+            _logger.LogError(ex, "Login Failed");
             return Unauthorized();
         }
     }
@@ -60,7 +65,8 @@ public class AuthController : ControllerBase
                 Username = request.Username,
                 email = request.email,
                 Role = 1,
-                DateOfBirth = request.DateOfBirth
+                DateOfBirth = request.DateOfBirth,
+                Photo = null
             };
             
             await _userService.CreateUser(userToCreate);

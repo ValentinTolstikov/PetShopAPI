@@ -7,6 +7,6 @@ public class User
     public string Password { get; set; }
     public string email { get; set; }
     public DateOnly DateOfBirth { get; set; }
-    public byte[] Photo { get; set; }
+    public byte[]? Photo { get; set; }
     public int Role { get; set; }
 }

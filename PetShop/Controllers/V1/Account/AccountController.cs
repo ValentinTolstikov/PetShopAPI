@@ -15,16 +15,20 @@ public class AccountController : ControllerBase
 {
     private readonly IHttpContextAccessor _currentContext;
     private readonly PetShopContext _dbContext;
+    private Logger<AccountController> _logger;
     
-    public AccountController(IHttpContextAccessor currentContext, PetShopContext dbContext)
+    public AccountController(IHttpContextAccessor currentContext, PetShopContext dbContext, Logger<AccountController> logger)
     {
         _currentContext = currentContext;
         _dbContext = dbContext;
+        _logger = logger;
     }
     
     [HttpGet]
     public async Task<ActionResult<UserInfoResponseDto>> GetUserInfo()
     {
+        _logger.LogInformation("Get user info required");
+        
         var username = _currentContext.HttpContext.User.FindFirstValue(ClaimTypes.Name);
 
         var user = await _dbContext.User.FirstOrDefaultAsync(p=>p.Username == username);
