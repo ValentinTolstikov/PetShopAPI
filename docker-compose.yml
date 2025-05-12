@@ -4,8 +4,6 @@
     build:
       context: .
       dockerfile: RecomendationsService/Dockerfile
-    ports:
-      - "12000:8080"
   coreservice:
     image: petshop
     build:
