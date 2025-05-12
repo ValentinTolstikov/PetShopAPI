@@ -1,0 +1,15 @@
+﻿services:
+  recomendationsservice:
+    image: recomendationsservice
+    build:
+      context: .
+      dockerfile: RecomendationsService/Dockerfile
+    ports:
+      - "12000:8080"
+  coreservice:
+    image: petshop
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "25000:8080"

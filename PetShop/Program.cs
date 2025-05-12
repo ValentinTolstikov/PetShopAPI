@@ -26,6 +26,7 @@ public class Program
         var dbconfig = builder.Configuration.GetSection("DbConfiguration");
         
         services.Configure<DbConfiguration>(dbconfig);
+        services.AddLogging();
         services.AddCors(options =>
         {
             options.AddPolicy("CorsPolicy",

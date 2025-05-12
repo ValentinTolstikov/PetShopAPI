@@ -9,6 +9,6 @@ public class Product
     public float Price { get; set; }
     public int CountInStock { get; set; }
     public int IdCategory { get; set; }
-    
+    public int ViewsCount { get; set; }
     public ICollection<ProductPhoto> ProductPhotos { get; set; }
 }

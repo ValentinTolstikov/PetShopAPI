@@ -15,9 +15,9 @@ public class AccountController : ControllerBase
 {
     private readonly IHttpContextAccessor _currentContext;
     private readonly PetShopContext _dbContext;
-    private Logger<AccountController> _logger;
+    private ILogger<AccountController> _logger;
     
-    public AccountController(IHttpContextAccessor currentContext, PetShopContext dbContext, Logger<AccountController> logger)
+    public AccountController(IHttpContextAccessor currentContext, PetShopContext dbContext, ILogger<AccountController> logger)
     {
         _currentContext = currentContext;
         _dbContext = dbContext;

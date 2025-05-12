@@ -58,11 +58,19 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet]
-    public Product? Get(int id)
+    public async Task<ActionResult<Product>> Get(int id)
     {
         _logger.LogInformation("GetProduct called.");
         
-        return _context.Product.FirstOrDefault(p => p.Id == id);
+        var product = await _context.Product.FirstOrDefaultAsync(p => p.Id == id);
+        
+        if (product is null)
+            return NotFound("Product not found");
+        
+        product.ViewsCount += 1;
+        await _context.SaveChangesAsync();
+        
+        return Ok(product);
     }
 
     [HttpPut]
