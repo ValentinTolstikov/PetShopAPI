@@ -8,9 +8,20 @@ services:
     container_name: backend
     ports:
       - "8080:8080"
+    networks:
+      - app-network
+
   recomendationsservice:
     image: recomendationsservice
     build:
       context: .
       dockerfile: RecomendationsService/Dockerfile
     container_name: recoservice
+    ports:
+      - "25000:25000"
+    networks:
+      - app-network
+        
+networks:
+  app-network:
+    driver: bridge
