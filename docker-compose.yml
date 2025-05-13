@@ -1,11 +1,13 @@
-﻿version: "3.9"
-services:
+﻿services:
   coreservice:
     image: petshop
     build:
       context: .
       dockerfile: Dockerfile
     container_name: backend
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:8080;http://+:8081
     ports:
       - "8080:8080"
     networks:
