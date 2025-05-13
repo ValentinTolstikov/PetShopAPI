@@ -1,3 +1,5 @@
+using System.Net;
+
 namespace RecomendationsService;
 
 public class Program
@@ -5,6 +7,11 @@ public class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
+
+        builder.WebHost.UseKestrel(options =>
+        {
+            options.Listen(IPAddress.Parse("0.0.0.0"), 25000);
+        });
 
         // Add services to the container.
 
