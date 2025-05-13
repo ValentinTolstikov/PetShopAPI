@@ -1,16 +1,20 @@
-﻿services:
+﻿version: "3.9"
+services:
   coreservice:
     image: petshop
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: backend
     ports:
       - "8080:8080"
+
   recomendationsservice:
     image: recomendationsservice
     build:
       context: .
       dockerfile: RecomendationsService/Dockerfile
+    container_name: recoservice
     ports:
       - "25000:25000"
   
