@@ -15,6 +15,3 @@ services:
       context: .
       dockerfile: RecomendationsService/Dockerfile
     container_name: recoservice
-    ports:
-      - "25000:25000"
-  
