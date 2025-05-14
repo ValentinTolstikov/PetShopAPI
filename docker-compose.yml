@@ -7,10 +7,9 @@
     container_name: backend
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=https://+:8080;http://+:8081
+      - ASPNETCORE_URLS=http://+:8080;
     ports:
       - "8080:8080"
-      - "8081:8081"
     networks:
       - app-network
 
