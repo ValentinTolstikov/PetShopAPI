@@ -2,7 +2,6 @@
 USER $APP_UID
 WORKDIR /app
 EXPOSE 25000
-EXPOSE 25001
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
@@ -15,7 +14,7 @@ RUN dotnet build "RecomendationsService.csproj" -c $BUILD_CONFIGURATION -o /app/
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "RecomendationsService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=true
+RUN dotnet publish "RecomendationsService.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
