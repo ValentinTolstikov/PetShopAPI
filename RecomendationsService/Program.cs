@@ -1,4 +1,7 @@
 using System.Net;
+using Microsoft.EntityFrameworkCore;
+using PetShop;
+using PetShop.Infrastructure.DB;
 
 namespace RecomendationsService;
 
@@ -9,11 +12,37 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
+        
+        var services = builder.Services;
 
-        builder.Services.AddControllers();
+        var dbconfig = builder.Configuration.GetSection("DbConfiguration");
+        
+        services.Configure<DbConfiguration>(dbconfig);
+        services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen();
+        services.AddMemoryCache();
+        
+        var conStr = dbconfig.GetSection("DevConnectionString").Value;
+
+        if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") != "Development")
+        {
+            var logger = new LoggerFactory().CreateLogger("Development");
+            logger.LogInformation("ASPNETCORE_ENVIRONMENT is not development");
+            conStr = dbconfig.GetSection("ProdConnectionString").Value;
+        }
+        
+        services.AddDbContext<PetShopContext>(opt =>
+        {
+            opt.UseMySql(
+                conStr,
+                ServerVersion.AutoDetect(conStr),
+                options => options.EnableRetryOnFailure(
+                    maxRetryCount: 5,
+                    maxRetryDelay: System.TimeSpan.FromSeconds(30),
+                    errorNumbersToAdd: null));
+        });
 
         var app = builder.Build();
 
