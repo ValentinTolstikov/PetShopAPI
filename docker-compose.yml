@@ -32,8 +32,6 @@
     build: Proxy/
     ports:
       - 80:80
-    depends_on:
-      - coreservice
         
 networks:
   app-network:
