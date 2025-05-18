@@ -80,6 +80,7 @@ public class Program
         });
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+        services.AddMemoryCache();
 
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
