@@ -1,4 +1,4 @@
-upstream test-service {
+upstream coreservice {
     server localhost:8080;
     keepalive 20;
 }
