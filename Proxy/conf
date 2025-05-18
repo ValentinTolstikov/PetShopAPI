@@ -1,9 +1,9 @@
 upstream coreservice {
-    server 0.0.0.0:8080;
+    server 127.0.0.1:8080;
     keepalive 20;
 }
 server {
-    listen       80;
+    listen 127.0.0.1:80;
     location / {
         proxy_pass http://localhost:8080;
         proxy_http_version 1.1;
