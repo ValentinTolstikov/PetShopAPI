@@ -14,7 +14,7 @@ public class Program
         // Add services to the container.
         
         var services = builder.Services;
-
+        
         var dbconfig = builder.Configuration.GetSection("DbConfiguration");
         
         services.Configure<DbConfiguration>(dbconfig);
