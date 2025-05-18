@@ -26,6 +26,14 @@
       - "25000:25000"
     networks:
       - app-network
+      
+  proxy:
+    image: proxy
+    build: Proxy/
+    ports:
+      - 80:80
+    depends_on:
+      - coreservice
         
 networks:
   app-network:
