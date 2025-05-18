@@ -64,7 +64,7 @@ public class Program
         {
             var logger = new LoggerFactory().CreateLogger("Development");
             logger.LogInformation("ASPNETCORE_ENVIRONMENT is not development");
-            conStr = dbconfig.GetSection("ProdConnectionString").Value;
+            conStr = dbconfig.GetSection("DevConnectionString").Value;
         }
             
         

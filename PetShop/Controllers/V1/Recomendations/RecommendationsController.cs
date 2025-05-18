@@ -1,6 +1,8 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
+using PetShop.Domain.Entities;
 using PetShop.Infrastructure.DB;
 
 namespace PetShop.Controllers.V1.Recomendations;
@@ -12,28 +14,37 @@ public class RecommendationsController: ControllerBase
     private readonly ILogger<RecommendationsController> _logger;
     private readonly PetShopContext _context;
     private readonly IMemoryCache _cache;
+    private readonly IHttpContextAccessor _currentContext;
 
     public RecommendationsController(ILogger<RecommendationsController> logger, 
         PetShopContext context,
-        IMemoryCache memoryCache)
+        IMemoryCache memoryCache,
+        IHttpContextAccessor currentContext)
     {
         _logger = logger;
         _context = context;
         _cache = memoryCache;
+        _currentContext = currentContext;
     }
     
     [HttpGet]
-    public async Task<List<int>> GetRecommendations(int count, int userId = -1)
+    public async Task<ActionResult<List<Product>>> GetRecommendations(int count)
     {
         _logger.LogInformation("Get recommendations called");
         
-        if (userId != -1)
+        var username = _currentContext.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+
+        var user = await _context.User.FirstOrDefaultAsync(p=>p.Username == username);
+        
+        if(user is null)
+            return NotFound($"No tag found with name");
+        
+        if (user.Id != -1)
         {
             _logger.LogInformation("Using person id");
         }
         
-        var coldStart = !await _context.Transaction.AnyAsync(t=>t.IdUser == userId);
-
+        var coldStart = !await _context.Transaction.AnyAsync(t=>t.IdUser == user.Id);
 
         if (coldStart)
         {
@@ -41,15 +52,19 @@ public class RecommendationsController: ControllerBase
 
             var items = await GetTopSellingItems(count);
 
-            return items;
+            var products = _context.Product.Where(p=>items.Contains(p.Id));
+            
+            return products.ToList();
         }
         else
         {
             _logger.LogInformation("Hot start recommendation");
             
-            var items = await GetUserRecommendations(userId, count);
+            var items = await GetUserRecommendations(user.Id, count);
 
-            return items;
+            var products = _context.Product.Where(p=>items.Contains(p.Id));
+            
+            return products.ToList();
         }
     }
 
