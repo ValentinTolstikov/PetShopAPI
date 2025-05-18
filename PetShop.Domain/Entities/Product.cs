@@ -10,5 +10,5 @@ public class Product
     public int CountInStock { get; set; }
     public int IdCategory { get; set; }
     public int ViewsCount { get; set; }
-    public ICollection<ProductPhoto> ProductPhotos { get; set; }
+    public virtual ICollection<ProductPhoto> ProductPhotos { get; set; }
 }
