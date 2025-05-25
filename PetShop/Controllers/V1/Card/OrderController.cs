@@ -112,7 +112,7 @@ public class OrderController : ControllerBase
 
             foreach (var product in products)
             {
-                var prod = _context.Product.FirstOrDefault(p => p.Id == product.Id);
+                var prod = _context.Product.FirstOrDefault(p => p.Id == product.IdProduct);
                 orderDTO.products.Add(new Tuple<Product, int>(prod,product.SalingCount));
             }
         }
