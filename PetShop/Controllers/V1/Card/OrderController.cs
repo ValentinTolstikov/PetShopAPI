@@ -9,7 +9,6 @@ namespace PetShop.Controllers.V1.Card;
 
 [ApiController]
 [Route("[controller]/[action]")]
-[Authorize]
 public class OrderController : ControllerBase
 {
     private readonly IHttpContextAccessor _currentContext;
@@ -21,11 +20,55 @@ public class OrderController : ControllerBase
         _currentContext = currentContext;
         _context = context;
     }
+
+    public class OrderRequest()
+    {
+        public int ProductId { get; set; }
+        public int Count { get; set; }
+    }
     
     [HttpPost]
-    public async Task MakeOrder(List<Product> productsToOrder)
+    public async Task<ActionResult<int>> MakeOrder([FromBody]ICollection<OrderRequest> productsWithCounts)
     {
+        var username = _currentContext.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+
+        var user = await _context.User.FirstOrDefaultAsync(p=>p.Username == username);
         
+        if(user is null)
+            return NotFound($"No tag found with name");
+
+        var order = new Transaction()
+        {
+            IdUser = user.Id,
+            OrderDate = DateTime.Now,
+            IsDeleted = false,
+            IsDeliver = false
+        };
+        
+        _context.Transaction.Add(order);
+        await _context.SaveChangesAsync();
+        
+        foreach (var prod in productsWithCounts)
+        {
+            var fProd = await _context.Product.FirstOrDefaultAsync(p=>p.Id==prod.ProductId);
+            
+            if (fProd is null)
+                return NotFound($"No product found with id {prod.ProductId}");
+            
+            if (fProd.CountInStock<prod.Count)
+                return NotFound($"Product {prod.ProductId} is out of stock");
+                
+            _context.ProductInTransaction.Add(new ProductInTransaction()
+            {
+                IdTransaction = order.Id,
+                SalingCount = prod.Count,
+                IdProduct = prod.ProductId,
+                ProductSalingPrice = fProd.Price
+            });
+        }
+        
+        await _context.SaveChangesAsync();
+        return Ok(order.Id);
     }
     
     [HttpPost]

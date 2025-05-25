@@ -11,6 +11,7 @@ public class PetShopContext : DbContext
     public DbSet<Manufacturer> Manufacturer { get; set; }
     public DbSet<Photo> Photo { get; set; }
     public DbSet<ProductInTransaction> ProductInTransaction { get; set; }
+    public DbSet<UserAdress> UserAdress { get; set; }
     public DbSet<ProductPhoto> ProductPhoto { get; set; }
     public DbSet<ProductTag> ProductTag { get; set; }
     public DbSet<Tag> Tag { get; set; }

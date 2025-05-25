@@ -3,6 +3,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PetShop.Domain.Entities;
 using PetShop.DTOs;
 using PetShop.Infrastructure.DB;
 
@@ -39,5 +40,18 @@ public class AccountController : ControllerBase
         var base64 = Encoding.UTF8.GetString(user.Photo);
         
         return Ok(new UserInfoResponseDto(user.Username, user.email, user.DateOfBirth.ToString("dd-MM-yyyy"), base64));
+    }
+
+    [HttpGet]
+    public async Task<ActionResult<List<UserAdress>>> GetUserAdresses()
+    {
+        var username = _currentContext.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+
+        var user = await _dbContext.User.FirstOrDefaultAsync(p=>p.Username == username);
+        
+        if(user is null)
+            return NotFound($"No tag found with name");
+        
+        return _dbContext.UserAdress.Where(a=>a.IdUser == user.Id).ToList();
     }
 }
