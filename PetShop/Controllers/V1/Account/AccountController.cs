@@ -43,7 +43,7 @@ public class AccountController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<UserAdress>>> GetUserAdresses()
+    public async Task<ActionResult<UserAdress>> GetUserAddress()
     {
         var username = _currentContext.HttpContext.User.FindFirstValue(ClaimTypes.Name);
 
@@ -52,6 +52,32 @@ public class AccountController : ControllerBase
         if(user is null)
             return NotFound($"No tag found with name");
         
-        return _dbContext.UserAdress.Where(a=>a.IdUser == user.Id).ToList();
+        return _dbContext.UserAdress.FirstOrDefault(a=>a.IdUser == user.Id);
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> UpdateUserAddress([FromBody] UserAdress userAddress)
+    {
+        var username = _currentContext.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+
+        var user = await _dbContext.User.FirstOrDefaultAsync(p=>p.Username == username);
+        
+        if(user is null)
+            return NotFound($"No tag found with name");
+        
+        var isExist = await _dbContext.UserAdress.AnyAsync(a=>a.IdUser == userAddress.IdUser);
+
+        if (isExist)
+        {
+            _dbContext.UserAdress.Update(userAddress);
+        }
+        else
+        {
+            _dbContext.UserAdress.Add(userAddress);
+        }
+        
+        await _dbContext.SaveChangesAsync();
+        
+        return Ok();
     }
 }
