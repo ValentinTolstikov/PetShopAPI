@@ -93,7 +93,7 @@ public class OrderController : ControllerBase
         if(user is null)
             return NotFound($"No tag found with name");
 
-        var userOrders = _context.Transaction.Where(t=>t.IdUser == user.Id).ToList();
+        var userOrders = _context.Transaction.Where(t=>t.IdUser == user.Id && t.IsDeleted == false).ToList();
 
         var orders = new List<OrderDTO>();
         
