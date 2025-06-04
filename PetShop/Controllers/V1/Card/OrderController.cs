@@ -103,7 +103,9 @@ public class OrderController : ControllerBase
             {
                 idOrder = order.Id,
                 isDelivered = order.IsDeliver,
-                products = []
+                products = [],
+                deliverDate = order.DeliverDate,
+                orderDate = order.OrderDate,
             };
             
             orders.Add(orderDTO);
@@ -125,6 +127,8 @@ public class OrderController : ControllerBase
     {
         public int idOrder { get; set; }
         public bool isDelivered { get; set; }
+        public DateTime? deliverDate { get; set; }
+        public DateTime orderDate { get; set; }
         public List<Tuple<Product,int>> products { get; set; }
     }
 
