@@ -102,6 +102,7 @@ public class OrderController : ControllerBase
             var orderDTO = new OrderDTO()
             {
                 idOrder = order.Id,
+                isDelivered = order.IsDeliver,
                 products = []
             };
             
@@ -120,9 +121,10 @@ public class OrderController : ControllerBase
         return Ok(orders);
     }
 
-    private class OrderDTO()
+    private class OrderDTO
     {
         public int idOrder { get; set; }
+        public bool isDelivered { get; set; }
         public List<Tuple<Product,int>> products { get; set; }
     }
 
