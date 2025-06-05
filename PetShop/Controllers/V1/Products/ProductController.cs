@@ -73,6 +73,15 @@ public class ProductController : ControllerBase
         return Ok(product);
     }
 
+    public async Task<ActionResult<IEnumerable<Product>>> Search(string request)
+    {
+        _logger.LogInformation("Search called. Request is {request}", request);
+        
+        var products = _context.Product.AsQueryable().Where(p=>p.Title.Contains(request));
+        
+        return Ok(products);
+    }
+
     [HttpPut]
     public async Task Update(Product product)
     {
