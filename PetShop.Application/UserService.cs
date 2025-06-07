@@ -21,7 +21,7 @@ public class UserService : IUserService
         if (user is  null)
             throw new UserNotFoundException("Invalid username or password");
         
-        return new AuthResponseDTO() { Username = user.Username };
+        return new AuthResponseDTO() { Username = user.Username, Role = user.Role };
     }
 
     public async Task<User> CreateUser(User user)

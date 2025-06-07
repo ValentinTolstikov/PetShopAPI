@@ -23,7 +23,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("Login")]
-    public async Task<ActionResult<string>> Login([FromBody] LoginRequestDTO loginRequest)
+    public async Task<ActionResult<LoginResponse>> Login([FromBody] LoginRequestDTO loginRequest)
     {
         try
         {
@@ -45,13 +45,23 @@ public class AuthController : ControllerBase
             expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(120)), // время действия 30 минуты
             signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             
-            return new JsonResult(new JwtSecurityTokenHandler().WriteToken(jwt));
+            return Ok(new LoginResponse()
+            {
+                Role = user.Role,
+                Token = new JwtSecurityTokenHandler().WriteToken(jwt)
+            });
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Login Failed");
             return Unauthorized();
         }
+    }
+
+    public class LoginResponse
+    {
+        public string Token { get; set; }
+        public int Role { get; set; }
     }
     
     [HttpPost("Registration")]
