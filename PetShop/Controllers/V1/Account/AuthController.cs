@@ -42,7 +42,7 @@ public class AuthController : ControllerBase
             issuer: AuthOptions.ISSUER,
             audience: AuthOptions.AUDIENCE,
             claims: claims,
-            expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(30)), // время действия 30 минуты
+            expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(120)), // время действия 30 минуты
             signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             
             return new JsonResult(new JwtSecurityTokenHandler().WriteToken(jwt));
@@ -64,7 +64,7 @@ public class AuthController : ControllerBase
                 Password = request.Password,
                 Username = request.Username,
                 email = request.email,
-                Role = 1,
+                Role = 0,
                 DateOfBirth = request.DateOfBirth,
                 Photo = null
             };
