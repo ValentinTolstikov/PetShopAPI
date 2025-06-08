@@ -8,5 +8,6 @@ public class User
     public string email { get; set; }
     public DateOnly DateOfBirth { get; set; }
     public byte[]? Photo { get; set; }
+    public bool IsActive { get; set; }
     public int Role { get; set; }
 }

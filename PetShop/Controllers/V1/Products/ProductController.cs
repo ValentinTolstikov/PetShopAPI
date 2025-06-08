@@ -73,6 +73,7 @@ public class ProductController : ControllerBase
         return Ok(product);
     }
 
+    [HttpGet]
     public async Task<ActionResult<IEnumerable<Product>>> Search(string request)
     {
         _logger.LogInformation("Search called. Request is {request}", request);

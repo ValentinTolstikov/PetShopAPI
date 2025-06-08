@@ -32,17 +32,19 @@ public class AuthController : ControllerBase
             var user = await _userService.Authorize(loginRequest.Username, loginRequest.Password);
             
             _logger.LogTrace("Login success for user {user}", user.Username);
-        
+            
+            var roleName = user.Role == 0 ? "Admin" : "User";
+            
             var claims = new List<Claim>
             {
                 new (ClaimTypes.Name, user.Username),
-                new (ClaimTypes.Role, "User")
+                new (ClaimTypes.Role, roleName)
             };
             var jwt = new JwtSecurityToken(
             issuer: AuthOptions.ISSUER,
             audience: AuthOptions.AUDIENCE,
             claims: claims,
-            expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(120)), // время действия 30 минуты
+            expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(120)), // время действия 120 минут
             signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
             
             return Ok(new LoginResponse()
@@ -76,7 +78,8 @@ public class AuthController : ControllerBase
                 email = request.email,
                 Role = 0,
                 DateOfBirth = request.DateOfBirth,
-                Photo = null
+                Photo = null,
+                IsActive = true
             };
             
             await _userService.CreateUser(userToCreate);

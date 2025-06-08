@@ -9,6 +9,7 @@ namespace PetShop.Controllers.V1.Card;
 
 [ApiController]
 [Route("[controller]/[action]")]
+[Authorize]
 public class OrderController : ControllerBase
 {
     private readonly IHttpContextAccessor _currentContext;
