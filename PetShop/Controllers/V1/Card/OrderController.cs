@@ -58,6 +58,8 @@ public class OrderController : ControllerBase
             
             if (fProd.CountInStock<prod.Count)
                 return NotFound($"Product {prod.ProductId} is out of stock");
+            
+            fProd.CountInStock -= prod.Count;
                 
             _context.ProductInTransaction.Add(new ProductInTransaction()
             {
