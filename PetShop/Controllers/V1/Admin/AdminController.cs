@@ -44,7 +44,7 @@ public class AdminController : ControllerBase
         return Ok(response);
     }
 
-    [HttpPut]
+    [HttpGet]
     public async Task<ActionResult> ChangeUser(string username, bool active)
     {
         _logger.LogInformation("Change user status for {user} to {status} called", username, active);
