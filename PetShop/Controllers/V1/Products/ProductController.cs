@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using PetShop.Domain.Entities;
 using PetShop.Infrastructure.DB;
 
@@ -14,20 +15,34 @@ public class ProductController : ControllerBase
 {
     private readonly ILogger<ProductController> _logger;
     private readonly PetShopContext _context;
+    private readonly IMemoryCache _cache;
     
     public ProductController(ILogger<ProductController> logger, 
-        PetShopContext context)
+        PetShopContext context,
+        IMemoryCache cache)
     {
         _logger = logger;
         _context = context;
+        _cache = cache;
     }
 
     [HttpGet(Name = "Products")]
     public async Task<ActionResult<IEnumerable<Product>>> GetPage(int page = 1, int pageSize = 10, string? tag = null, string? category = null)
     {
         _logger.LogInformation("GetProducts called.");
+        
+        var source = new List<Product>();
 
-        var source = _context.Product.AsQueryable();
+        if (!_cache.TryGetValue("Products", out var src))
+        {
+            source = await _context.Product.ToListAsync();
+            _cache.Set("Products", source);
+        }
+        else
+        {
+            source = (List<Product>)src!;
+        }
+       
         
         if (tag is not null)
         {
@@ -41,7 +56,7 @@ public class ProductController : ControllerBase
                 .Select(pt => pt.Id)
                 .AsQueryable();
 
-            source = source.Where(p => productTags.Contains(p.Id));
+            source = source.Where(p => productTags.Contains(p.Id)).ToList();
         }
 
         if (category is not null)
@@ -51,7 +66,7 @@ public class ProductController : ControllerBase
             if(reqCategory is null)
                 return NotFound("Category not found");
             
-            source = source.Where(p => p.IdCategory == reqCategory.Id);
+            source = source.Where(p => p.IdCategory == reqCategory.Id).ToList();
         }
         
         return Ok(source.Skip(pageSize * (page - 1)).Take(pageSize));
