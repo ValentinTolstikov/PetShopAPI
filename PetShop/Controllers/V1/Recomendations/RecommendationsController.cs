@@ -107,7 +107,7 @@ public class RecommendationsController: ControllerBase
 
         if (productsIdsToRecommend.Count == count)
         {
-            _cache.Set("recs_" + personId + count, productsIdsToRecommend, TimeSpan.FromMinutes(5));
+            _cache.Set("recs_" + personId + count, productsIdsToRecommend, TimeSpan.FromMinutes(1));
             return productsIdsToRecommend;
         }
             
@@ -119,7 +119,7 @@ public class RecommendationsController: ControllerBase
 
         if (productsIdsToRecommend.Count == count)
         {
-            _cache.Set("recs_" + personId + count, productsIdsToRecommend, TimeSpan.FromMinutes(5));
+            _cache.Set("recs_" + personId + count, productsIdsToRecommend, TimeSpan.FromMinutes(1));
             return productsIdsToRecommend;
         }
             
@@ -131,7 +131,7 @@ public class RecommendationsController: ControllerBase
 
         if (productsIdsToRecommend.Count == count)
         {
-            _cache.Set("recs_" + personId + count, productsIdsToRecommend, TimeSpan.FromMinutes(5));
+            _cache.Set("recs_" + personId + count, productsIdsToRecommend, TimeSpan.FromMinutes(1));
             return productsIdsToRecommend;
         }
         
@@ -142,7 +142,7 @@ public class RecommendationsController: ControllerBase
         
         productsIdsToRecommend.AddRange(topSellingItems);
         
-        _cache.Set("recs_" + personId + count, productsIdsToRecommend, TimeSpan.FromMinutes(5));
+        _cache.Set("recs_" + personId + count, productsIdsToRecommend, TimeSpan.FromMinutes(1));
         return productsIdsToRecommend;
     }
 
