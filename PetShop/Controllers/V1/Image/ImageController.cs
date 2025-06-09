@@ -36,7 +36,10 @@ public class ImageController
         {
             var photoIds = _context.ProductPhoto.Where(p => p.IdProduct == productId).Select(p=>p.IdPhoto).ToArray();
             photos = _context.Photo.Where(p => photoIds.Contains(p.Id)).ToArray();
-            _cache.Set("Photos"+productId, photos);
+            _cache.Set("Photos"+productId, photos, new MemoryCacheEntryOptions()
+            {
+                AbsoluteExpiration = DateTime.Now.AddMinutes(5)
+            });
         }
         
         

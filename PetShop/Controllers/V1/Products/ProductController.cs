@@ -36,7 +36,10 @@ public class ProductController : ControllerBase
         if (!_cache.TryGetValue("Products", out var src))
         {
             source = await _context.Product.ToListAsync();
-            _cache.Set("Products", source);
+            _cache.Set("Products", source, new MemoryCacheEntryOptions()
+            {
+                AbsoluteExpiration = DateTime.Now.AddMinutes(5)
+            });
         }
         else
         {
