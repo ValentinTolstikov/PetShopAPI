@@ -65,7 +65,7 @@ public class AccountController : ControllerBase
         if(user is null)
             return NotFound($"No tag found with name");
         
-        var isExist = await _dbContext.UserAdress.AnyAsync(a=>a.IdUser == userAddress.IdUser);
+        var isExist = await _dbContext.UserAdress.AnyAsync(a=>a.IdUser == user.Id);
 
         if (isExist)
         {
