@@ -2,6 +2,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using PetShop.Domain.Entities;
 using PetShop.Infrastructure.DB;
 
@@ -13,30 +14,44 @@ namespace PetShop.Controllers.V1.Image;
 public class ImageController
 {
     private readonly PetShopContext _context;
+    private readonly IMemoryCache _cache;
     
-    public ImageController(PetShopContext context, ILogger<ImageController> logger)
+    public ImageController(PetShopContext context, ILogger<ImageController> logger,
+        IMemoryCache memoryCache)
     {
         _context = context;
+        _cache = memoryCache;
     }
     
     [HttpGet]
     public async Task<IEnumerable<PhotoDTO>> Product(int productId)
     {
-        var photoIds = _context.ProductPhoto.Where(p => p.IdProduct == productId).Select(p=>p.IdPhoto).ToArray();
-        var photos = _context.Photo.Where(p => photoIds.Contains(p.Id));
+        var photos = Array.Empty<Photo>();
+            
+        if (_cache.TryGetValue("Photos"+productId, out var cachePhotos))
+        {
+            photos = cachePhotos as Photo[];
+        }
+        else
+        {
+            var photoIds = _context.ProductPhoto.Where(p => p.IdProduct == productId).Select(p=>p.IdPhoto).ToArray();
+            photos = _context.Photo.Where(p => photoIds.Contains(p.Id)).ToArray();
+        }
+        
         
         var dtos = new List<PhotoDTO>();
 
-        foreach (var photo in photos)
-        {
-            var base64 = Encoding.UTF8.GetString(photo.Data);
-            var dto = new PhotoDTO()
+        if (photos != null)
+            foreach (var photo in photos)
             {
-                Data = base64,
-            };
-            dtos.Add(dto);
-        }
-        
+                var base64 = Encoding.UTF8.GetString(photo.Data);
+                var dto = new PhotoDTO()
+                {
+                    Data = base64,
+                };
+                dtos.Add(dto);
+            }
+
         return dtos.ToArray();
     }
 
