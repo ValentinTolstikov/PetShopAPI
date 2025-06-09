@@ -76,7 +76,7 @@ public class AuthController : ControllerBase
                 Password = request.Password,
                 Username = request.Username,
                 email = request.email,
-                Role = 0,
+                Role = 1,
                 DateOfBirth = request.DateOfBirth,
                 Photo = null,
                 IsActive = true
