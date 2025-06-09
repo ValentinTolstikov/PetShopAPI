@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace PetShop.Domain.Entities;
 
 public class UserAdress
 {
+    [Key]
     public int Id { get; set; }
     public int IdUser { get; set; }
     public string City { get; set; }

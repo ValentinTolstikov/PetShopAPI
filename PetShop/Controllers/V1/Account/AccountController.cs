@@ -54,6 +54,36 @@ public class AccountController : ControllerBase
         
         return _dbContext.UserAdress.FirstOrDefault(a=>a.IdUser == user.Id);
     }
+    
+    [HttpPost]
+    public async Task<ActionResult> UpdateUserPassword([FromBody] ChangeRequest request)
+    {
+        var username = _currentContext.HttpContext.User.FindFirstValue(ClaimTypes.Name);
+
+        var user = await _dbContext.User.FirstOrDefaultAsync(p=>p.Username == username);
+        
+        if(user is null)
+            return NotFound($"No tag found with name");
+
+        if (user.Password == request.oldPass)
+        {
+            user.Password = request.newPass;
+            _dbContext.User.Update(user);
+            await _dbContext.SaveChangesAsync();
+        }
+        else
+        {
+            return BadRequest("Passwords do not match");
+        }
+        
+        return Ok();
+    }
+
+    public class ChangeRequest
+    {
+        public string oldPass { get; set; }
+        public string newPass { get; set; }
+    }
 
     [HttpPost]
     public async Task<ActionResult> UpdateUserAddress([FromBody] UserAdress userAddress)
@@ -67,13 +97,26 @@ public class AccountController : ControllerBase
         
         var isExist = await _dbContext.UserAdress.AnyAsync(a=>a.IdUser == user.Id);
 
+        var newUa = new UserAdress()
+        {
+            IdUser = user.Id,
+            City = userAddress.City,
+            House = userAddress.House,
+            Streat = userAddress.Streat,
+            HouseAdditional = userAddress.HouseAdditional,
+        };
+        
         if (isExist)
         {
-            _dbContext.UserAdress.Update(userAddress);
+            var ua = _dbContext.UserAdress.FirstOrDefault(u=>u.IdUser == user.Id);
+            ua.City = newUa.City;
+            ua.House = newUa.House;
+            ua.Streat = newUa.Streat;
+            ua.HouseAdditional = newUa.HouseAdditional;
         }
         else
         {
-            _dbContext.UserAdress.Add(userAddress);
+            _dbContext.UserAdress.Add(newUa);
         }
         
         await _dbContext.SaveChangesAsync();
